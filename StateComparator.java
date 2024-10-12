@@ -4,17 +4,17 @@ import java.util.Comparator;
 
 /**
  *  
- * @author
+ * @author Shobhit Sarkar
  *
  */
 
 /**
- * This method compares two states in the lexicographical order of the board configuration. 
+ * This class compares two states in the lexicographical order of the board configuration. 
  * The 3X3 array representing each board configuration is converted into a sequence of nine 
  * digits starting at the 0th row, and within each row, at the 0th column.  For example, the 
  * two states
  * 
- * 	   2 0 3        2 8 1 
+ *     2 0 3        2 8 1 
  *     1 8 4        7 5 3 
  *     7 6 5        6 0 4 
  *
@@ -25,10 +25,16 @@ import java.util.Comparator;
  */
 public class StateComparator implements Comparator<State>
 {
-	@Override
-	public int compare(State s1, State s2)
-	{
-		// TODO 
-	    return 0;
-	}  		
+    @Override
+    public int compare(State s1, State s2)
+    {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (s1.board[i][j] != s2.board[i][j]) {
+                    return Integer.compare(s1.board[i][j], s2.board[i][j]);
+                }
+            }
+        }
+        return 0;  // States are identical
+    }
 }
